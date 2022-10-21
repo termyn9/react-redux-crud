@@ -2,3 +2,34 @@
     width: 100vh;
     height: 100vh;
 }
+
+.btnMap-edit{
+    font-style: italic;
+    border: 2px solid blue;
+    border-radius: 5px;
+    padding: 3px 12px;
+    color: blue;
+    background-color: white;
+}
+
+.btnMap-edit:hover{
+    transition: 0.5s;
+    background-color: blue;
+    color: white;
+}
+
+.btnMap-delete{
+    font-style: italic;
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 2px 8px;
+    color: red;
+    background-color: white;
+}
+
+.btnMap-delete:hover{
+    transition: 0.5s;
+    background-color: red;
+    color: white;
+}   
+

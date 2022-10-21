@@ -22,6 +22,10 @@ const TutorialsList = () => {
   const onChangeSearchTitle = e => {
     const searchTitle = e.target.value;
     setSearchTitle(searchTitle);
+    
+    if (searchTitle === ""){
+      dispatch(retrieveTutorials())
+    }
   };
 
   const refreshData = () => {
