@@ -57,7 +57,7 @@ const TutorialsList = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Search by title"
+            placeholder="Search by title of city..."
             value={searchTitle}
             onChange={onChangeSearchTitle}
           />
@@ -73,7 +73,7 @@ const TutorialsList = () => {
         </div>
       </div>
       <div className="col-md-6">
-        <h4>Tutorials List</h4>
+        <h4>Cities List</h4>
 
         <ul className="list-group">
           {tutorials &&
@@ -100,7 +100,7 @@ const TutorialsList = () => {
       <div className="col-md-6">
         {currentTutorial ? (
           <div>
-            <h4>Tutorial</h4>
+            <h4>City</h4>
             <div>
               <label>
                 <strong>Title:</strong>
@@ -112,6 +112,18 @@ const TutorialsList = () => {
                 <strong>Description:</strong>
               </label>{" "}
               {currentTutorial.description}
+            </div>
+            <div>
+              <label>
+                <strong>Latitude:</strong>
+              </label>{" "}
+              {currentTutorial.Latitude}
+            </div>
+            <div>
+              <label>
+                <strong>Longitude:</strong>
+              </label>{" "}
+              {currentTutorial.Longitude}
             </div>
             <div>
               <label>
@@ -130,7 +142,7 @@ const TutorialsList = () => {
         ) : (
           <div>
             <br />
-            <p>Please click on a Tutorial...</p>
+            <p>Please click on a City...</p>
           </div>
         )}
       </div>

@@ -8,6 +8,8 @@ const Tutorial = (props) => {
     id: null,
     title: "",
     description: "",
+    Latitude: "",
+    Longitude: "",
     published: false
   };
   const [currentTutorial, setCurrentTutorial] = useState(initialTutorialState);
@@ -40,6 +42,8 @@ const Tutorial = (props) => {
       id: currentTutorial.id,
       title: currentTutorial.title,
       description: currentTutorial.description,
+      Latitude: currentTutorial.Latitude,
+      Longitude: currentTutorial.Longitude,
       published: status
     };
 
@@ -81,7 +85,7 @@ const Tutorial = (props) => {
     <div>
       {currentTutorial ? (
         <div className="edit-form">
-          <h4>Tutorial</h4>
+          <h4>City</h4>
           <form>
             <div className="form-group">
               <label htmlFor="title">Title</label>
@@ -102,6 +106,28 @@ const Tutorial = (props) => {
                 id="description"
                 name="description"
                 value={currentTutorial.description}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="Latitude">Latitude</label>
+              <input
+                type="text"
+                className="form-control"
+                id="Latitude"
+                name="Latitude"
+                value={currentTutorial.Latitude}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="Longitude">Longitude</label>
+              <input
+                type="text"
+                className="form-control"
+                id="Longitude"
+                name="Longitude"
+                value={currentTutorial.Longitude}
                 onChange={handleInputChange}
               />
             </div>
@@ -146,7 +172,7 @@ const Tutorial = (props) => {
       ) : (
         <div>
           <br />
-          <p>Please click on a Tutorial...</p>
+          <p>Please click on a City...</p>
         </div>
       )}
     </div>

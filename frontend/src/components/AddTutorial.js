@@ -7,6 +7,8 @@ const AddTutorial = () => {
     id: null,
     title: "",
     description: "",
+    Latitude: "", 
+    Longitude: "",
     published: false
   };
   const [tutorial, setTutorial] = useState(initialTutorialState);
@@ -20,14 +22,16 @@ const AddTutorial = () => {
   };
 
   const saveTutorial = () => {
-    const { title, description } = tutorial;
+    const { title, description, Latitude, Longitude } = tutorial;
 
-    dispatch(createTutorial(title, description))
+    dispatch(createTutorial(title, description, Latitude, Longitude))
       .then(data => {
         setTutorial({
           id: data.id,
           title: data.title,
           description: data.description,
+          Latitude: data.Latitude, 
+          Longitude: data.Longitude,
           published: data.published
         });
         setSubmitted(true);
@@ -78,6 +82,32 @@ const AddTutorial = () => {
               value={tutorial.description}
               onChange={handleInputChange}
               name="description"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="Latitude">Latitude</label>
+            <input
+              type="text"
+              className="form-control"
+              id="Latitude"
+              required
+              value={tutorial.Latitude}
+              onChange={handleInputChange}
+              name="Latitude"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="Longitude">Longitude</label>
+            <input
+              type="text"
+              className="form-control"
+              id="Longitude"
+              required
+              value={tutorial.Longitude}
+              onChange={handleInputChange}
+              name="Longitude"
             />
           </div>
 
