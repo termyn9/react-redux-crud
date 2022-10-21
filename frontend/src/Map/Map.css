@@ -5,10 +5,10 @@
 
 .btnMap-edit{
     font-style: italic;
-    border: 2px solid green;
+    border: 2px solid rgb(35, 182, 35);
     border-radius: 5px;
     padding: 3px 12px;
-    color: green;
+    color: rgb(35, 182, 35);
     background-color: white;
 }
 

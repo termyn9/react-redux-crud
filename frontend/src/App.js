@@ -12,27 +12,27 @@ import EditTutorial from "./components/EditTutorial";
 function App() {
   return (
     <Router>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <nav className="navbar navbar-expand navbar-light" style={{backgroundColor: 'rgb(180, 230, 185)'}}>
         <a href="/tutorials" className="navbar-brand">
           Home
         </a>
         <div className="navbar-nav mr-auto">
-          <li className="nav-item">
+          <li className="nav-item" style={{fontWeight: 'bold'}}>
             <Link to={"/tutorials"} className="nav-link">
               Cities
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" style={{fontWeight: 'bold'}}>
             <Link to={"/add"} className="nav-link">
               Add
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" style={{fontWeight: 'bold'}}>
             <Link to={"/map"} className="nav-link">
               Map
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" style={{fontWeight: 'bold'}}>
             <Link to={"/edit-tutorial"} className="nav-link">
               Edit
             </Link>
