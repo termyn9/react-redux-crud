@@ -5,16 +5,16 @@
 
 .btnMap-edit{
     font-style: italic;
-    border: 2px solid blue;
+    border: 2px solid green;
     border-radius: 5px;
     padding: 3px 12px;
-    color: blue;
+    color: green;
     background-color: white;
 }
 
 .btnMap-edit:hover{
     transition: 0.5s;
-    background-color: blue;
+    background-color: green;
     color: white;
 }
 

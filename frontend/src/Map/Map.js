@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, useMap, Marker, Popup, useMapEvents } from "react-leaflet";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { retrieveTutorials } from "../actions/tutorials";
@@ -53,7 +53,7 @@ const Map = (props) => {
                 </Link>
                 <button 
                 className="btnMap-delete" 
-                onClick={() => {if (window.confirm('Are you sure to delete this item?')) this.removeTutorial(city.id)}}
+                onClick={() => {if (window.confirm('Are you sure to delete this item?')) removeTutorial(city.id)}}
                 >Delete</button>
                 </div>
             </div>
