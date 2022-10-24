@@ -11,6 +11,7 @@ const TutorialsList = () => {
   const [currentTutorial, setCurrentTutorial] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchTitle, setSearchTitle] = useState("");
+  const [editor, setEditor] = useState(false)
 
   const tutorials = useSelector(state => state.tutorials);
   const dispatch = useDispatch();

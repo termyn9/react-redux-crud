@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { updateTutorial, deleteTutorial } from "../actions/tutorials";
 import TutorialDataService from "../services/TutorialService";
 
@@ -63,8 +64,8 @@ const Tutorial = (props) => {
     dispatch(updateTutorial(currentTutorial.id, currentTutorial))
       .then(response => {
         console.log(response);
-
         setMessage("The tutorial was updated successfully!");
+        setTimeout(() => props.history.push("/map"), 1000)
       })
       .catch(e => {
         console.log(e);
@@ -167,7 +168,7 @@ const Tutorial = (props) => {
           >
             Update
           </button>
-          <p>{message}</p>
+          <p style={{color: 'green', fontSize: '18px', marginTop: '5px'}}>{message}</p>
         </div>
       ) : (
         <div>

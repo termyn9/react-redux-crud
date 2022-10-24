@@ -28,10 +28,11 @@ const Map = (props) => {
     }
 
   return (
-    <MapContainer center={[51.6683 , 39.1919]} zoom={5} scrollWheelZoom={true} maxZoom={12} minZoom={2}>
+    <MapContainer center={[51.6683 , 39.1919]} zoom={5} scrollWheelZoom={true} maxZoom={10} minZoom={2}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        // https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=Wj9tYUMIKI22YhArpV0D
       />
     
     {tutorials.map((city, i) =>(

@@ -7,7 +7,7 @@ import AddTutorial from "./components/AddTutorial";
 import Tutorial from "./components/Tutorial";
 import TutorialsList from "./components/TutorialsList";
 import Map from "./Map/Map";
-import EditTutorial from "./components/EditTutorial";
+import EditModal from "./components/EditModal";
 
 function App() {
   return (
@@ -32,20 +32,15 @@ function App() {
               Map
             </Link>
           </li>
-          <li className="nav-item" style={{fontWeight: 'bold'}}>
-            <Link to={"/edit-tutorial"} className="nav-link">
-              Edit
-            </Link>
-          </li>
         </div>
       </nav>
 
-      <div className="container mt-3">
+      <div className="container-md" style={{marginTop: '18px'}}>
         <Switch>
           <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
           <Route exact path="/add" component={AddTutorial} />
           <Route path="/tutorials/:id" component={Tutorial} />
-          <Route path="/edit-tutorial" component={EditTutorial}/>
+          <Route path="/edit-tutorial/:id" component={EditModal}/>
           <Route path="/map" component={Map}/>
         </Switch>
       </div>
