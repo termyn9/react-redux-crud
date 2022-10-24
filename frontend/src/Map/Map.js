@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { retrieveTutorials } from "../actions/tutorials";
 import { deleteTutorial } from "../actions/tutorials";
 import { Link } from "react-router-dom";
-import L from "leaflet";
+import { Icon } from "leaflet";
+import markerIconPng from './geo-icon.png'
 import './Map.css' 
 
 const Map = (props) => {
@@ -20,13 +21,6 @@ const Map = (props) => {
         dispatch(deleteTutorial(_id))
       };
 
-    const GetIcon = (_iconSize) => {
-        return L.icon({
-            iconUrl: require("./cloudy.png"),
-            iconSize: [_iconSize]
-        })
-    }
-
   return (
     <MapContainer center={[51.6683 , 39.1919]} zoom={5} scrollWheelZoom={true} maxZoom={10} minZoom={2}>
       <TileLayer
@@ -38,6 +32,10 @@ const Map = (props) => {
     {tutorials.map((city, i) =>(
         <Marker
         key = {i}
+        icon = {new Icon({
+          iconUrl: markerIconPng,
+          iconSize: [40, 41]
+        })}
         position={[city.Latitude, city.Longitude]}
         >
         <Popup>
