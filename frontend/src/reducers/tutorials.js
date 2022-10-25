@@ -8,22 +8,22 @@ import {
 
 const initialState = [];
 
+// отвечает за обновление store
+// (initialState = текущее состояние, action - объект события)
 const tutorialReducer = (tutorials = initialState, action) => {
-  const { type, payload } = action;
-
-  switch (type) {
+  switch (action.type) {
     case CREATE_TUTORIAL:
-      return [...tutorials, payload];
+      return [...tutorials, action.payload];
 
     case RETRIEVE_TUTORIALS:
-      return payload;
+      return action.payload;
 
     case UPDATE_TUTORIAL:
       return tutorials.map((tutorial) => {
-        if (tutorial.id === payload.id) {
+        if (tutorial.id === action.payload.id) {
           return {
             ...tutorial,
-            ...payload,
+            ...action.payload,
           };
         } else {
           return tutorial;
@@ -31,7 +31,7 @@ const tutorialReducer = (tutorials = initialState, action) => {
       });
 
     case DELETE_TUTORIAL:
-      return tutorials.filter(({ id }) => id !== payload.id);
+      return tutorials.filter(({ id }) => id !== action.payload.id);
 
     case DELETE_ALL_TUTORIALS:
       return [];

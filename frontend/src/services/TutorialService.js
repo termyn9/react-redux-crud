@@ -1,5 +1,6 @@
-import http from "../http-common";
+import http from "../http-common"; // метод axios
 
+// запросы axios, соответствующие HTTP-запросам
 const getAll = () => {
   return http.get("/tutorials");
 };
