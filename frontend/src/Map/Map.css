@@ -33,3 +33,33 @@
     color: white;
 }   
 
+#blink-yes {
+    -webkit-animation: blink1 1s linear infinite;
+    animation: blink1 1s linear infinite;
+  }
+  @-webkit-keyframes blink1 {
+    0% { color: rgb(126, 226, 126); }
+    50% { color: rgb(255, 255, 255); }
+    100% { color: rgb(126, 226, 126); }
+  }
+  @keyframes blink1 {
+    0% { color: rgb(126, 226, 126); }
+    50% { color: rgb(255, 255, 255); }
+    100% { color: rgb(126, 226, 126); }
+  };
+
+#blink-no {
+    -webkit-animation: blink2 1s linear infinite;
+    animation: blink2 1s linear infinite;
+  }
+  @-webkit-keyframes blink2 {
+    0% { color: rgb(233, 12, 12); }
+    50% { color: rgb(255, 255, 255); }
+    100% { color: rgb(233, 12, 12); }
+  }
+  @keyframes blink2 {
+    0% { color: rgb(233, 12, 12); }
+    50% { color: rgb(255, 255, 255); }
+    100% { color: rgb(233, 12, 12); }
+  };
+

@@ -12,7 +12,7 @@ const Map = (props) => {
     const dispatch = useDispatch(); // отвечает за запрос на обновление 
     const tutorials = useSelector(state => state.tutorials);
     const [deleteItem, setDeleteItem] = useState(false);
-    const [ position, setPosition ] = useState({ latitude: 0, longitude: 0 })
+    const [position, setPosition ] = useState({ latitude: 0, longitude: 0 })
 
     useEffect(() => {
       dispatch(retrieveTutorials());
@@ -32,11 +32,10 @@ const Map = (props) => {
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url='file://C:/Users/Admin/Desktop/Tiles/{z}/{x}/{y}.png'
-        // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        // url='file://C:/Users/Admin/Desktop/Tiles/{z}/{x}/{y}.png'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         // https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=Wj9tYUMIKI22YhArpV0D
       />
-    
     {tutorials.map((city, i) =>(
         <Marker
         key = {i}
@@ -48,7 +47,9 @@ const Map = (props) => {
         >
         <Popup>
             <div>
-                <h5>City: {city.title}</h5>
+              {console.log(city.published)}
+              {console.log(city.title)}
+              {city.published ? <h5 id="blink-yes">City: {city.title}</h5> : <h5 id="blink-no">City: {city.title}</h5>}
                 <p>- {city.description}</p>
                 <strong>{city.Latitude} {city.Longitude}</strong>
                 <div style={{marginTop: '5px', display:'flex', justifyContent: 'space-between'}}>
@@ -67,7 +68,6 @@ const Map = (props) => {
         </Popup>
       </Marker>
     ))}
-      
     </MapContainer>
   );
 };
