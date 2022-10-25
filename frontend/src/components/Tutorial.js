@@ -58,6 +58,8 @@ const Tutorial = (props) => {
       .catch(e => {
         console.log(e);
       });
+
+      setTimeout(() => props.history.push("/map"), 1000)
   };
 
   const updateContent = () => {
@@ -75,12 +77,13 @@ const Tutorial = (props) => {
   const removeTutorial = () => {
     dispatch(deleteTutorial(currentTutorial.id))
       .then(() => {
-        props.history.push("/tutorials");
+        setTimeout(() => props.history.push("/map"), 1000)
       })
       .catch(e => {
         console.log(e);
       });
   };
+
 
   return (
     <div>
