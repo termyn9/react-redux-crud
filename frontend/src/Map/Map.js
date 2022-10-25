@@ -9,7 +9,7 @@ import markerIconPng from './geo-icon.png'
 import './Map.css' 
 
 const Map = (props) => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); // отвечает за запрос на обновление 
     const tutorials = useSelector(state => state.tutorials);
     const [deleteItem, setDeleteItem] = useState(false);
     const [ position, setPosition ] = useState({ latitude: 0, longitude: 0 })
@@ -32,8 +32,8 @@ const Map = (props) => {
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        // url="Tiles/{z}/{x}/{y}.png"
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url='file://C:/Users/Admin/Desktop/Tiles/{z}/{x}/{y}.png'
+        // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         // https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=Wj9tYUMIKI22YhArpV0D
       />
     
