@@ -1,29 +1,31 @@
-// реакция сервера на HTTP-запросы через контроллеры
+// обработчики маршрута - реакция сервера на HTTP-запросы
 module.exports = app => {
+    // экземпляр контроллера
     const tutorials = require("../controllers/tutorial.controller.js");
-  
+   
     var router = require("express").Router();
   
-    // Create a new Tutorial
+    // добавить новый экземпляр
     router.post("/", tutorials.create);
   
-    // Retrieve all Tutorials
+    // получить все экземпляры
     router.get("/", tutorials.findAll);
   
-    // Retrieve all published Tutorials
+    // получить все экземпляры с меткой
     router.get("/published", tutorials.findAllPublished);
   
-    // Retrieve a single Tutorial with id
+    // получить определенный экземпляр
     router.get("/:id", tutorials.findOne);
   
-    // Update a Tutorial with id
+    // обновить определенный экземпляр
     router.put("/:id", tutorials.update);
   
-    // Delete a Tutorial with id
+    // удалить определенный экземпляр
     router.delete("/:id", tutorials.delete);
   
-    // Create a new Tutorial
+    // удалить все экземпляры
     router.delete("/", tutorials.deleteAll);
   
-    app.use('/api/tutorials', router);
+    // исходный адрес и все маршруты
+    app.use('/api/tutorials', router); 
   };

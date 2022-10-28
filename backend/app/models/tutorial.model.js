@@ -1,4 +1,4 @@
-// модель Sequelize
+// модель Sequelize для работы с таблицей tutorial
 // инициалзиция таблицы tutorial с параметрами, столбцы будут сгенерированы автоматически
 module.exports = (sequelize, Sequelize) => {
     const Tutorial = sequelize.define("tutorial", {

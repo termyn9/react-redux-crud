@@ -1,11 +1,22 @@
 version: '3.5'
 
 services:
-  db_auth:
-    container_name: db_auth  # уникальное имя для сервиса
+  db:
+    container_name: docker_db  # уникальное имя для сервиса
     ports:
       - "5432:5432"
     environment: # переменные окружения, которые передаются внутрь контейнера
-      - POSTGRES_PASSWORD=123
-      - POSTGRES_USER=postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: testdb
     image: postgres:15.0-alpine # образ выбирается из tags (alpine - без лишнего) на сайте docker-hub
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: email@email.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports: 
+      - "5050:80"
+

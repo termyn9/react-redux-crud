@@ -1,11 +1,11 @@
-// Контроллер
+// Контроллер взаимодействия с tutorial
 const db = require("../models");
 const Tutorial = db.tutorials;
 const Op = db.Sequelize.Op;
 
 // создание
 exports.create = (req, res) => {
-  // проверка на валидацию
+  // валидация
   if (!req.body.title) {
     res.status(400).send({
       message: "Content can not be empty!"
