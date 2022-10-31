@@ -35,7 +35,7 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
   });
 };
 
-// проверка существует ли роль уже в запросах
+// проверка существует ли роль в запросе
 checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {

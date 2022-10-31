@@ -1,4 +1,4 @@
-import http from "../http-common"; // метод axios
+import http from "../http/http-common"; // метод axios
 
 // запросы axios, соответствующие HTTP-запросам
 const getAll = () => {

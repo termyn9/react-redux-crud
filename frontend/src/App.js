@@ -21,6 +21,8 @@ import { logout } from "./actions/auth/auth";
 import { clearMessage } from "./actions/auth/message";
 
 import { history } from "./helpers/history";
+import AddUser from "./components/AdminPanel/AddUser";
+import UsersList from "./components/AdminPanel/UsersList";
 
 class App extends React.Component {
   constructor(props) {
@@ -87,6 +89,16 @@ class App extends React.Component {
                 Add
               </Link>
               </li>
+              <li className="nav-item" style={{ fontWeight: "bold" }}>
+              <Link to={"/users"} className="nav-link">
+                Users
+              </Link>
+              </li>
+              <li className="nav-item" style={{ fontWeight: "bold" }}>
+              <Link to={"/add-user"} className="nav-link">
+                Add user
+              </Link>
+              </li>
               </div>
             ): currentUser && (
               <div className="navbar-nav ml-auto">
@@ -142,7 +154,11 @@ class App extends React.Component {
             <Route path="/user/map" component={MapUser} />
 
             <Route path="/user" component={BoardUser}/>
+
             <Route path="/admin" component={BoardAdmin} />
+            <Route path="/add-user" component={AddUser} />
+            <Route path="/users" component={UsersList} />
+
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />

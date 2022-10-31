@@ -1,6 +1,7 @@
 const { verifySignUp } = require("../middleware");
 const controller = require("../controllers/auth.controller");
 
+// маршруты для регистрации
 module.exports = function(app) {
   app.use(function(req, res, next) {
     res.header(
@@ -10,6 +11,7 @@ module.exports = function(app) {
     next();
   });
 
+  // регистрация с доп-ой проверкой (middleware) на существование роли и дубликацию данных
   app.post(
     "/api/auth/signup",
     [
@@ -19,5 +21,12 @@ module.exports = function(app) {
     controller.signup
   );
 
+  // USERS
+  app.get(
+    "/api/auth/users",
+    controller.findAll
+  );
+  
+  // вход через контроллер проверки входа (доп-ых middleware проверок не надо)
   app.post("/api/auth/signin", controller.signin);
 };

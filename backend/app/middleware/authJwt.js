@@ -3,15 +3,18 @@ const config = require("../config/auth.config.js");
 const db = require("../models");
 const User = db.user;
 
+// ВЕРИФИКАЦИЯ по токену
 verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"]; // проверка токена из заголовка HTTP 
 
+  // проверка на наличие токена 
   if (!token) {
     return res.status(403).send({
       message: "No token provided!"
     });
   }
 
+  // проверка токена на секрет, если всё верно, то записываем в запрос id
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({
@@ -34,6 +37,7 @@ isAdmin = (req, res, next) => {
         }
       }
 
+      // даже если данные токена (пароля) верные, роль может не соответствовать
       res.status(403).send({
         message: "Require Admin Role!"
       });
@@ -65,12 +69,7 @@ isModeratorOrAdmin = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "moderator") {
-          next();
-          return;
-        }
-
-        if (roles[i].name === "admin") {
+        if (roles[i].name === "moderator" || roles[i].name === "admin") {
           next();
           return;
         }

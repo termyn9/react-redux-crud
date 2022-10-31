@@ -1,4 +1,4 @@
-// Контроллер auth
+// Контроллер аутентификации
 const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.user;
@@ -25,7 +25,9 @@ exports.signup = (req, res) => {
             [Op.or]: req.body.roles
           }
         }
-      }).then(roles => {
+      })
+      // установка роли в соответствии с выбранной при регистрации
+      .then(roles => {
         user.setRoles(roles).then(() => {
           res.send({ message: "User registered successfully!" });
         });
@@ -42,12 +44,29 @@ exports.signup = (req, res) => {
     });
 };
 
+exports.findAll = (req, res) => {
+  const username = req.query.username;
+  var condition = username ? { username: { [Op.iLike]: `%${username}%` } } : null;
+
+  User.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving users."
+      });
+    });
+};
+
 exports.signin = (req, res) => {
   User.findOne({  // поиск по username
     where: {
       username: req.body.username
     }
   })
+  // проверка по имени пользователя 
     .then(user => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
@@ -68,7 +87,7 @@ exports.signin = (req, res) => {
       
       // ТОКЕН в соответствии со входными данными
       var token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400 // 24 hours
+        expiresIn: 86400 // 24 часа действия токена
       });
 
       var authorities = [];

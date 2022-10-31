@@ -48,7 +48,7 @@ const required = (value) => {
       );
     }
   };
-  
+
   class Register extends Component {
     constructor(props) {
       super(props);
@@ -56,11 +56,13 @@ const required = (value) => {
       this.onChangeUsername = this.onChangeUsername.bind(this);
       this.onChangeEmail = this.onChangeEmail.bind(this);
       this.onChangePassword = this.onChangePassword.bind(this);
-  
+      this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+
       this.state = {
         username: "",
         email: "",
         password: "",
+        confPassword: "",
         successful: false,
       };
     }
@@ -82,15 +84,28 @@ const required = (value) => {
         password: e.target.value,
       });
     }
+
+    onChangeConfirmPassword(e) {
+      this.setState({
+        confPassword: e.target.value
+      })
+    }
   
     handleRegister(e) {
       e.preventDefault();
-  
+
       this.setState({
         successful: false,
       });
-  
-      this.form.validateAll();
+
+      if (this.state.confPassword !== this.state.password){
+        this.checkBtn.context._errors.length++;
+        this.setState({
+          successful: false
+        })
+      } else {
+        this.checkBtn.context._errors.length = 0;
+      }
   
       if (this.checkBtn.context._errors.length === 0) {
         this.props
@@ -137,7 +152,7 @@ const required = (value) => {
                       className="form-control"
                       name="username"
                       value={this.state.username}
-                      onChange={this.onChangeUsername}
+                      onChange={(this.onChangeUsername)}
                       validations={[required, vusername]}
                     />
                   </div>
@@ -165,6 +180,18 @@ const required = (value) => {
                       validations={[required, vpassword]}
                     />
                   </div>
+
+                  <div className="form-group">
+                    <label htmlFor="password">Confirm password</label>
+                    <Input
+                      type="password"
+                      className="form-control"
+                      name="confPassword"
+                      value={this.state.confPassword}
+                      onChange={this.onChangeConfirmPassword}
+                      validations={[required, vpassword]}
+                    />
+                  </div>
   
                   <div className="form-group">
                     <button className="btn btn-primary btn-block">Sign Up</button>
@@ -179,6 +206,12 @@ const required = (value) => {
                   </div>
                 </div>
               )}
+
+                {this.state.confPassword !== this.state.password && (<div className="form-group">
+                  <div className={ this.state.successful ? "alert alert-success" : "alert alert-danger" } role="alert">
+                    Пароли не совпадают
+                  </div>
+                </div>)}
               <CheckButton
                 style={{ display: "none" }}
                 ref={(c) => {

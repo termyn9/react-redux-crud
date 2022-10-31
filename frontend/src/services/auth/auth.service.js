@@ -10,7 +10,6 @@ class AuthService {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
-
         return response.data;
       });
   }
@@ -26,6 +25,17 @@ class AuthService {
       password,
     });
   }
+
+  // users
+  create(username, email, password, roles) {
+    return axios.post(API_URL + "signup", {
+      username,
+      email, 
+      password,
+      roles
+    })
+  }
+
 }
 
 export default new AuthService();
