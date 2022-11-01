@@ -1,6 +1,6 @@
 // Контроллер пользовательских интерфейсов
 exports.allAccess = (req, res) => {
-    res.status(200).send("Public Content.");
+    res.status(200).send("Public panel.");
   };
   
   exports.userBoard = (req, res) => {
@@ -8,7 +8,7 @@ exports.allAccess = (req, res) => {
   };
   
   exports.adminBoard = (req, res) => {
-    res.status(200).send("Admin Content.");
+    res.status(200).send("Admin panel.");
   };
 
   exports.moderatorBoard = (req, res) => {

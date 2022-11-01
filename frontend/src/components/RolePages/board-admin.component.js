@@ -1,5 +1,6 @@
 import UserService from "../../services/auth/user.service";
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class BoardAdmin extends Component {
     constructor(props) {
@@ -32,8 +33,23 @@ export default class BoardAdmin extends Component {
   
     render() {
       return (
-        <div className="container">
-          <header className="jumbotron">
+        <div className="container" style={{display: 'flex', justifyContent: 'space-around'}}>
+          <div>
+            <ul>
+            <li className="nav-item">
+              <Link to={"/users"} className="nav-link">
+                Users
+              </Link>
+              </li>
+              <li className="nav-item" >
+              <Link to={"/add-user"} className="nav-link">
+                Add user
+              </Link>
+              </li>
+            </ul>
+          </div>
+          
+          <header className="jumbotron" style={{width: '80%'}}>
             <h3>{this.state.content}</h3>
           </header>
         </div>

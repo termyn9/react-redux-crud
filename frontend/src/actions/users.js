@@ -1,5 +1,5 @@
 import { REGISTER_SUCCESS,  REGISTER_FAIL, SET_MESSAGE } from "./auth/type";
-import { RETRIEVE_USERS } from "./typesUsers";
+import { DELETE_USER, RETRIEVE_USERS, UPDATE_USER } from "./typesUsers";
 import UsersService from "../services/UsersService";
 
 export const createUser = (username, email, password, roles) => async (dispatch) => {
@@ -25,3 +25,44 @@ export const retrieveUsers = () => async (dispatch) => {
       console.log(err);
     }
   };
+
+export const findUserByUsername = (username) => async (dispatch) => {
+  try{
+    const res = await UsersService.findByUsername(username);
+
+    dispatch({
+      type: RETRIEVE_USERS,
+      payload: res.data,
+    });
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+export const removeUser = (id) => async (dispatch) => {
+  try{
+    await UsersService.remove(id);
+
+    dispatch({
+      type: DELETE_USER,
+      payload: {id},
+    })
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+export const updateUser = (id, data) => async (dispatch) => {
+  try{
+    const res = await UsersService.update(id, data);
+
+    dispatch({
+      type: UPDATE_USER,
+      payload: data
+    });
+
+    return Promise.resolve(res.data)
+  } catch(error) {
+    return Promise.reject(error)
+  }
+}
