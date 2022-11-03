@@ -24,9 +24,11 @@ module.exports = function(app) {
   // USERS
   app.get("/api/auth/users", controller.findAll);
 
-  app.get("/api/auth/users/:id", controller.findOne)
+  app.get("/api/auth/users/:id", controller.findOne);
   
-  app.put("/api/auth/users/:id", controller.update)
+  app.put("/api/auth/users/:id", controller.update);
+
+  app.delete("/api/auth/users/:id", controller.delete);
 
   // вход через контроллер проверки входа (доп-ых middleware проверок не надо)
   app.post("/api/auth/signin", controller.signin);

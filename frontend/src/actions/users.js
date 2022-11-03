@@ -39,13 +39,13 @@ export const findUserByUsername = (username) => async (dispatch) => {
   }
 }
 
-export const removeUser = (id) => async (dispatch) => {
+export const deleteUser = (id) => async (dispatch) => {
   try{
     await UsersService.remove(id);
 
     dispatch({
       type: DELETE_USER,
-      payload: {id},
+      payload: { id },
     })
   } catch(error) {
     console.log(error)
@@ -53,7 +53,7 @@ export const removeUser = (id) => async (dispatch) => {
 }
 
 export const updateUser = (id, data) => async (dispatch) => {
-  try{
+  try {
     const res = await UsersService.update(id, data);
 
     dispatch({

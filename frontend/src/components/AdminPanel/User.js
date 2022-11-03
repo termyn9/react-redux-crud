@@ -2,8 +2,12 @@ import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { updateUser } from "../../actions/users";
 import UsersService from "../../services/UsersService";
+import { useParams } from "react-router-dom";
 
 const User = (props) => {
+
+  const {id} = useParams()
+
   const initialUserState = {
     id: null,
     username: "",
@@ -11,6 +15,7 @@ const User = (props) => {
     password: "",
     roles: []
   };
+
   const [currentUser, setCurrentUser] = useState(initialUserState);
   const [message, setMessage] = useState("");
 
@@ -54,17 +59,6 @@ const User = (props) => {
         console.log(e);
       });
   };
-
-  const removeUser = () => {
-    dispatch(removeUser(currentUser.id))
-      .then(() => {
-        setTimeout(() => props.history.push("/map"), 1000)
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
-
 
   return (
     <div>
@@ -119,10 +113,6 @@ const User = (props) => {
             </select>
             </div>
           </form>
-
-          <button className="badge badge-danger mr-2" onClick={removeUser}>
-            Delete
-          </button>
 
           <button
             type="submit"

@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { retrieveUsers, findUserByUsername } from "../../actions/users";
+import { retrieveUsers, findUserByUsername, deleteUser } from "../../actions/users";
 import { Link } from "react-router-dom";
+import './UserList.css'
 
-const UsersList = () => {
+const UsersList = (props) => {
   const users = useSelector((state) => state.users);
   const [currentUser, setCurrentUser] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchUsername, setSearchUsername] = useState("");
+  const [deletedMessage, setDeletedMessage] = useState("Select the user for info...")
 
   const dispatch = useDispatch();
 
@@ -33,6 +35,19 @@ const UsersList = () => {
     setCurrentUser(null);
 
     dispatch(findUserByUsername(searchUsername));
+  };
+
+  const removeUser = (id) => {
+    dispatch(deleteUser(id))
+      .then(() => {
+        setCurrentUser(null)
+        setCurrentIndex(-1)
+        setDeletedMessage('User was deleted!');
+        setTimeout(() => setDeletedMessage("Select the user for info..."), 2000)
+      })
+      .catch(e => {
+        console.log(e);
+      });
   };
 
   return (
@@ -116,18 +131,25 @@ const UsersList = () => {
               {currentUser.roles}
             </div>
 
+            <button className="badge badge-danger mr-2" onClick={() => removeUser(currentUser.id)}>
+            Delete
+            </button>
+
             <Link
               to={"/users/" + currentUser.id}
-              className="badge badge-warning"
+              className="badge badge-primary"
+              style={{border: 'solid 2px black', padding: '.3em .9em'}}
             >
               Edit
             </Link>
-            
+
           </div>
         ) : (
           <div>
             <br />
-            <p>Select the user for info...</p>
+            <p className={"deleteColor " + (deletedMessage === "User was deleted!" ? "success" : "")}>
+              {deletedMessage}
+            </p>
           </div>
         )}
       </div>
